@@ -3,79 +3,93 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  ScrollView,
+  Image,
 } from 'react-native';
-import StudentCard from '../components/StudentCard';
 
-const ProfileScreen = ({ navigation }) => {
-  // Datos del estudiante - puedes cambiar estos valores por los tuyos
-  const studentData = {
-    name: "Juan Carlos Pérez Martínez",
-    age: 18,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
-  };
-
+const StudentCard = ({ name, age, image }) => {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Perfil del Estudiante</Text>
-        
-        {/* Componente reutilizable StudentCard */}
-        <StudentCard
-          name={studentData.name}
-          age={studentData.age}
-          image={studentData.image}
+    <View style={styles.card}>
+      {/* Imagen del estudiante */}
+      <View style={styles.imageContainer}>
+        <Image 
+          source={image} 
+          style={styles.image}
+          resizeMode="cover"
         />
-
-        {/* Botón para regresar a la pantalla principal */}
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={styles.backButtonText}>← Regresar al Inicio</Text>
-        </TouchableOpacity>
       </View>
-    </ScrollView>
+
+      {/* Información del estudiante */}
+      <View style={styles.infoContainer}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.age}>Edad: {age} años</Text>
+        
+        {/* Información adicional */}
+        <View style={styles.additionalInfo}>
+          <Text style={styles.infoItem}>📚 Carrera: Desarrollo de Software</Text>
+          <Text style={styles.infoItem}>🎓 Año: Tercer Año</Text>
+          <Text style={styles.infoItem}>📱 Módulo: 3.5 - Componentes Móviles</Text>
+          <Text style={styles.infoItem}>🏫 Instituto Técnico Ricaldone</Text>
+        </View>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  content: {
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#2c3e50',
-    textAlign: 'center',
-    marginBottom: 30,
-  },
-  backButton: {
-    backgroundColor: '#e74c3c',
-    paddingVertical: 12,
-    paddingHorizontal: 25,
+  card: {
+    backgroundColor: 'white',
     borderRadius: 20,
-    alignItems: 'center',
-    marginTop: 30,
+    padding: 20,
+    marginVertical: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 4,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 5,
+    alignItems: 'center',
   },
-  backButtonText: {
-    color: 'white',
-    fontSize: 16,
+  imageContainer: {
+    marginBottom: 20,
+  },
+  image: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 4,
+    borderColor: '#3498db',
+  },
+  infoContainer: {
+    alignItems: 'center',
+    width: '100%',
+  },
+  name: {
+    fontSize: 22,
     fontWeight: 'bold',
+    color: '#2c3e50',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  age: {
+    fontSize: 16,
+    color: '#7f8c8d',
+    marginBottom: 20,
+    fontWeight: '600',
+  },
+  additionalInfo: {
+    width: '100%',
+    backgroundColor: '#f8f9fa',
+    borderRadius: 15,
+    padding: 15,
+  },
+  infoItem: {
+    fontSize: 14,
+    color: '#34495e',
+    marginBottom: 8,
+    lineHeight: 20,
   },
 });
 
-export default ProfileScreen;
+export default StudentCard;

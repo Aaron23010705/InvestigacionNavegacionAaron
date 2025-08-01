@@ -11,9 +11,9 @@ import StudentCard from '../components/stuedentCard.js';
 const ProfileScreen = ({ navigation }) => {
   // Datos del estudiante - puedes cambiar estos valores por los tuyos
   const studentData = {
-    name: "Juan Carlos Pérez Martínez",
+    name: "Aarón Edgardo García Romero",
     age: 18,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+      image: require('../images/aaron.jpg')
   };
 
   return (
